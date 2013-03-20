@@ -76,11 +76,10 @@ public class HTTPRecordAnnotater {
 		if(input == null) {
 			return null;
 		}
-		int semiIdx = input.indexOf(";");
-		if(semiIdx > 0) {
-			return escapeSpaces(input.substring(0,semiIdx).trim());
-		}
-		return escapeSpaces(input.trim());
+                // Just return the first token, splitting on whitespace or ';'
+                String[] parts = input.trim().split( "\\s+|[;]" );
+
+                return parts[0];                
 	}
 	
 	public void annotateHTTPContent(CaptureSearchResult result, 
